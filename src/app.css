@@ -1,0 +1,98 @@
+/* only for pagination */
+
+.pagination {
+margin-left: 70%;
+margin-top: 80%;
+padding-top:10%;
+}
+
+.pagination > li {
+  /* display: inline-block; */
+  padding-left: 0;
+}
+.pagination > li {
+  list-style: none;
+  /* border: 0.9px solid; */
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 1.5% 3.0%;
+  border-bottom-style: none;
+  border-bottom-width: 1.00px;
+  border-left-style: none;
+  border-left-width: 1.00px;
+  border-right-style: none;
+  border-right-width: 1.00px;
+  border-top-style: none;
+  border-top-width: 1.00px;
+  border-top-left-radius: 20.00px;
+  border-top-right-radius: 20.00px;
+  border-bottom-left-radius: 20.00px;
+  border-bottom-right-radius: 20.00px;
+}
+
+.pagination>li.active>a {
+  color: #fff;
+  background-color: rgba(76, 162, 255, 1);
+
+  border-bottom-style: none;
+  border-bottom-width: 1.00px;
+  border-left-style: none;
+  border-left-width: 1.00px;
+  border-right-style: none;
+  border-right-width: 1.00px;
+  border-top-style: none;
+  border-top-width: 1.00px;
+  border-top-left-radius: 20.00px;
+  border-top-right-radius: 20.00px;
+  border-bottom-left-radius: 20.00px;
+  border-bottom-right-radius: 20.00px;
+
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.pagination > li > a:hover {
+  color: #fff;
+  background-color: rgba(76, 162, 255, 1);
+
+  border-bottom-style: none;
+  border-bottom-width: 1.00px;
+  border-left-style: none;
+  border-left-width: 1.00px;
+  border-right-style: none;
+  border-right-width: 1.00px;
+  border-top-style: none;
+  border-top-width: 1.00px;
+  border-top-left-radius: 20.00px;
+  border-top-right-radius: 20.00px;
+  border-bottom-left-radius: 20.00px;
+  border-bottom-right-radius: 20.00px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  display: none!important;
+}
+
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  /* border-bottom-right-radius: 4px; */
+  margin-right: 0;
+  /* padding: 0px!important; */
+  /* border-top-right-radius: 4px; */
+  /* display: none!important; */
+  border-bottom-style: none;
+  border-bottom-width: 1.00px;
+  border-left-style: none;
+  border-left-width: 1.00px;
+  border-right-style: none;
+  border-right-width: 1.00px;
+  border-top-style: none;
+  border-top-width: 1.00px;
+  border-top-left-radius: 20.00px;
+  border-top-right-radius: 20.00px;
+  border-bottom-left-radius: 20.00px;
+  border-bottom-right-radius: 20.00px;
+}

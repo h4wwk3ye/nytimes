@@ -1311,3 +1311,10 @@ a{
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+
+/* Pagination */
+
+.dashboardZeroState .pagination {
+  margin-top: 50%;
+}

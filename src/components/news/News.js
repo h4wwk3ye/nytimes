@@ -3,8 +3,8 @@ import styles from '../../styles/style.module.css'
 
 
 export default function News(props) {
+
   function date(d) {
-    console.log(d)
     d = new Date(Date.parse(d))
     let dt = d.getDate()
     let m = d.getMonth()
