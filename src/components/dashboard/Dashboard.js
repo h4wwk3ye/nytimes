@@ -60,7 +60,7 @@ const Dashboard = (props) => {
     axios
       .get(`${baseUrl}q=${props.val}&api-key=${process.env.REACT_APP_API_KEY}&page=${pageCount}`)
       .then(res => setNews(res.data.response))
-  }, [pageCount, props.val, baseUrl])
+  }, [pageCount, baseUrl])
 
   function handlePageClick(data) {
     const selected = data.selected

@@ -2,6 +2,7 @@
   "name": "nytimes",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://h4wwk3ye.github.io/nytimes/",
   "dependencies": {
     "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
