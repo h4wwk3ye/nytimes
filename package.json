@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "build-create-react-app-netlify": "^1.1.2",
     "classnames": "^2.2.6",
     "react": "^16.13.1",
     "react-animate-height": "^2.0.20",
@@ -15,7 +16,8 @@
     "react-paginate": "^6.3.2",
     "react-scripts": "3.4.1",
     "react-table": "^7.0.4",
-    "table": "^5.4.6"
+    "table": "^5.4.6",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build-netlify": "build-create-react-app-netlify"
   },
   "eslintConfig": {
     "extends": "react-app"
