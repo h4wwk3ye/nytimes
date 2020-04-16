@@ -30,7 +30,11 @@ function App() {
 
   return (
     flag ?
-      <DashboardZeroState handleClick={handleClick} handleChange={handleChange} val={val} />
+      <DashboardZeroState
+        handleClick={handleClick}
+        handleChange={handleChange}
+        val={val}
+      />
       :
       <Dashboard
         handleClick={handleClick}

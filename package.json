@@ -12,7 +12,9 @@
     "react": "^16.13.1",
     "react-animate-height": "^2.0.20",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-table": "^7.0.4",
+    "table": "^5.4.6"
   },
   "scripts": {
     "start": "react-scripts start",

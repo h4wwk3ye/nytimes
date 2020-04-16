@@ -7,6 +7,7 @@ import TopHeader from '../common/TopHeader'
 import News from '../news/News'
 
 const Dashboard = (props) => {
+
   return (
     <div className={styles.dashboardZeroState}>
       <TopHeader val={props.val} handleChange={props.handleChange} />
@@ -20,30 +21,30 @@ const Dashboard = (props) => {
       {!Object.keys(props.news).length ?
         null
         :
-        <div className={styles.table}>
-          <div className={styles.rectangle3}></div>  {/* white rectangle */}
-
-          <div className={styles.articles}>ARTICLES</div>
-
-          {/* Titles */}
-          <div className={styles.publishedDate}>Published Date</div>
-          <div className={styles.headline}>Headline</div>
-          <div className={styles.summary}>Summary</div>
-          <div className={styles.url}>URL</div>
-          <div className={styles.source}>Source</div>
-
-          {/* Table rows */}
-          <div className={styles.complete}>
-            <div className={styles.row}>
-              {props.news.docs.map(
-                (element, index) => <News element={element} key={element._id} cnt={index + 1} />)}
-              <br />
+        <div>
+          <div className={styles.tbody}>
+            <div>
+              <div className={styles.articles}>Articles</div>
             </div>
+            <div className={styles.row}>
+              <span className={styles.cellDate}>Published Date</span>
+              <span className={styles.cellHeadline}>Headline</span>
+              <span className={styles.cellSummary}>Summary</span>
+              <span className={styles.cellUrl}>Url</span>
+              <span className={styles.cellSource}>Source</span>
+            </div>
+
+
+            {props.news.docs.map((e, i) => <News news={e} idx={i + 1} />)}
+
           </div>
+
+
         </div>
       }
 
     </div>
+
   );
 }
 
