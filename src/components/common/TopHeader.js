@@ -11,6 +11,11 @@ const TopHeader = (props) => {
             value={props.val}
             placeholder='     Search'
             onChange={props.handleChange}
+            onKeyPress={event => {
+              if (event.key === 'Enter') {
+                props.handleClick()
+              }
+            }}
           />
         </div>
       </div>

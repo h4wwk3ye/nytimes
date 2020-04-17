@@ -9,7 +9,7 @@ const DashboardZeroState = (props) => {
   return (
     <div className={styles.dashboardZeroState}>
 
-      <TopHeader val={props.val} handleChange={props.handleChange} />
+      <TopHeader val={props.val} handleChange={props.handleChange} handleClick={props.handleClick} />
 
       <LeftPanel />
 
