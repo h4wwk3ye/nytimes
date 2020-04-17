@@ -18,7 +18,6 @@ const Dashboard = (props) => {
   const [news, setNews] = useState({})
 
   const [completed, setCompleted] = useState(false)
-  const [chart, setchart] = useState(false)
 
   const arr = useRef([])
 
@@ -39,11 +38,11 @@ const Dashboard = (props) => {
     datasets: [
       {
         label: 'Years',
-        fill: false,
+        // fill: true,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
         borderColor: 'rgba(75,192,192,1)',
-        borderCapStyle: 'butt',
+        // borderCapStyle: 'butt',
         borderDash: [],
         // borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
@@ -54,7 +53,7 @@ const Dashboard = (props) => {
         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
         pointHoverBorderColor: 'rgba(220,220,220,1)',
         pointHoverBorderWidth: 2,
-        pointRadius: 1,
+        pointRadius: 10,
         pointHitRadius: 10,
         data: []
       }
@@ -106,23 +105,22 @@ const Dashboard = (props) => {
       }
       setData(temp)
       console.log(data)
-      setchart(true)
+
     } else {
       setCompleted(false)
-      setchart(false)
+
     }
 
   }, [news, props.pageCount])
 
   useEffect(() => {
     setCompleted(false)
-    setchart(false)
+
   }, [])
 
 
   useEffect(() => {
     setCompleted(false)
-    setchart(false)
     console.log(props.pageCount, props.val)
     // if (!val.length) return props.setFlag(true) // display zero state again
     axios
@@ -169,7 +167,7 @@ const Dashboard = (props) => {
         </div>
       }
       <ReactPaginate
-        className={styles.pagination}
+        // className={styles.pagination}
         nextLabel={'>>'}
         breakLabel={'...'}
         breakClassName={'break-me'}
@@ -200,9 +198,13 @@ const Dashboard = (props) => {
           </ResponsiveContainer>
         </div>
       } */}
+
+
       <div className='chart'>
         <Line data={data} redraw />
       </div>
+
+
     </div>
 
   );
