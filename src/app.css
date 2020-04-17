@@ -96,3 +96,10 @@ padding-top:10%;
   border-bottom-left-radius: 20.00px;
   border-bottom-right-radius: 20.00px;
 }
+
+.chart{
+  width:50%;
+  height:30%;
+  padding-left: 30%;
+  padding-top: 10%;
+}

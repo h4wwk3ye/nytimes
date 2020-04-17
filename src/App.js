@@ -8,6 +8,7 @@ function App() {
 
   const [val, setval] = useState('')
   const [query, setQuery] = useState('')
+  const [pageCount, setpageCount] = useState(0)
 
   function handleChange(event) {
     setval(event.target.value)
@@ -18,6 +19,8 @@ function App() {
     if (!val.length) return setFlag(true) // display zero state again
     setFlag(false)
     setQuery(val)
+    setpageCount(0)
+
     console.log(val, query, "here", flag)
   }
 
@@ -42,6 +45,8 @@ function App() {
         setval={setval}
         setQuery={setQuery}
         query={query}
+        pageCount={pageCount}
+        setpageCount={setpageCount}
       />
   );
 }

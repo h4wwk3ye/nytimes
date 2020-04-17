@@ -8,15 +8,58 @@ import TopHeader from '../common/TopHeader'
 import News from '../news/News'
 import axios from 'axios'
 
+// import { XAxis, YAxis, LineChart, Tooltip, CartesianGrid, Line, ResponsiveContainer } from 'recharts'
 import ReactPaginate from 'react-paginate';
+import { Line } from 'react-chartjs-2'
 
 const Dashboard = (props) => {
+
   const baseUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?`
   const [news, setNews] = useState({})
-  const [pageCount, setpageCount] = useState(0)
+
   const [completed, setCompleted] = useState(false)
+  const [chart, setchart] = useState(false)
+
   const arr = useRef([])
 
+  // Now for chart
+
+  function date(d) {
+    d = new Date(Date.parse(d))
+    return d
+  }
+
+  function getMapValue(map, key) {
+    return map.get(key) || 0
+  }
+
+  const store = new Map()
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'Years',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        // borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: []
+      }
+    ]
+  })
 
   function cmp(a, b) {
     a = new Date(Date.parse(a.pub_date)).getTime()
@@ -41,32 +84,59 @@ const Dashboard = (props) => {
       arr.current = arr.current.filter(filt)
       // console.log(arr.current.length)
       arr.current.sort(cmp) // sorting by date
-      console.log(arr, news.docs)
+      // console.log(arr, news.docs, "inside")
       setCompleted(true)
+
+      arr.current.forEach(element => {
+        // console.log(element, "foreach")
+        let year = date(element.pub_date).getFullYear()
+        let val = getMapValue(store, year)
+        store.set(year, val + 1)
+      });
+
+      let temp = { ...data };
+      temp.labels = []  /// resetting previous render values
+      temp.datasets[0].data = []
+      console.log(store)
+      for (const [key, value] of store.entries()) {
+        console.log(key, value)
+        setData()
+        temp.labels.push(key)
+        temp.datasets[0].data.push(value)
+      }
+      setData(temp)
+      console.log(data)
+      setchart(true)
     } else {
       setCompleted(false)
+      setchart(false)
     }
 
-  }, [news])
+  }, [news, props.pageCount])
 
   useEffect(() => {
     setCompleted(false)
+    setchart(false)
   }, [])
 
 
   useEffect(() => {
-    console.log(pageCount, props.val)
+    setCompleted(false)
+    setchart(false)
+    console.log(props.pageCount, props.val)
     // if (!val.length) return props.setFlag(true) // display zero state again
     axios
-      .get(`${baseUrl}q=${props.val}&api-key=${process.env.REACT_APP_API_KEY}&page=${pageCount}`)
+      .get(`${baseUrl}q=${props.query}&api-key=${process.env.REACT_APP_API_KEY}&page=${props.pageCount}`)
       .then(res => setNews(res.data.response))
-  }, [pageCount, baseUrl])
+  }, [props.pageCount, baseUrl, props.query])
 
   function handlePageClick(data) {
     const selected = data.selected
-    setNews({}) // emptying current news
-    setpageCount(selected)
+    // setNews({}) // emptying current news
+    props.setpageCount(selected)
   }
+
+
 
   return (
     <div className={styles.dashboardZeroState}>
@@ -95,6 +165,7 @@ const Dashboard = (props) => {
             {arr.current.map((e, i) => <News news={e} idx={i + 1} key={i} />)}
 
           </div>
+
         </div>
       }
       <ReactPaginate
@@ -110,8 +181,28 @@ const Dashboard = (props) => {
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
         disableInitialCallback={false}
+        forcePage={props.pageCount}
       />
+      {/* 
+      {!data.length ? null :
 
+        <div className='chart'>
+          <ResponsiveContainer width="50%" height="30%" >
+            <LineChart
+              data={data}
+            >
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <CartesianGrid stroke="#f5f5f5" />
+              <Line type="monotone" dataKey="value" stroke="#ff7300" yAxisId={0} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      } */}
+      <div className='chart'>
+        <Line data={data} redraw />
+      </div>
     </div>
 
   );
